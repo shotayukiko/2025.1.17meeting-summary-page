@@ -56,6 +56,13 @@
       width: auto;
     }
 
+    .header__logo-text {
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--orange);
+      letter-spacing: -0.5px;
+    }
+
     .header__nav {
       display: flex;
       align-items: center;
@@ -1200,7 +1207,9 @@
   <header class="header">
     <div class="header__inner">
       <a href="#" class="header__logo">
-        <img src="images/logo.png" alt="スマほっと">
+        <img src="images/logo.png" alt="スマほっと"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+        <span class="header__logo-text" style="display:none">スマほっと</span>
       </a>
       <nav class="header__nav">
         <a href="#services">サービス</a>
