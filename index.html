@@ -815,39 +815,382 @@
       transform: translateY(0);
     }
 
-    /* ── RESPONSIVE ──────────────────────────── */
-    @media (max-width: 900px) {
-      .header__nav { display: none; }
+    /* ── PRICING ─────────────────────────────── */
+    .pricing__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
 
+    .price-card {
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.14);
+    }
+
+    .price-card--featured {
+      border: 3px solid var(--orange);
+      transform: scale(1.03);
+    }
+
+    .price-card--featured:hover {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .price-card__head {
+      background: var(--orange-light);
+      padding: 28px 24px 20px;
+      text-align: center;
+    }
+
+    .price-card--featured .price-card__head {
+      background: var(--orange);
+    }
+
+    .price-card__badge {
+      display: inline-block;
+      background: var(--orange);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+
+    .price-card--featured .price-card__badge {
+      background: #fff;
+      color: var(--orange);
+    }
+
+    .price-card__name {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .price-card--featured .price-card__name { color: #fff; }
+
+    .price-card__price {
+      font-size: 40px;
+      font-weight: 900;
+      color: var(--orange);
+      line-height: 1.1;
+    }
+
+    .price-card--featured .price-card__price { color: #fff; }
+
+    .price-card__price sup {
+      font-size: 20px;
+      font-weight: 700;
+      vertical-align: super;
+    }
+
+    .price-card__price span {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .price-card__note {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .price-card--featured .price-card__note { color: rgba(255,255,255,0.8); }
+
+    .price-card__body {
+      background: #fff;
+      padding: 24px;
+    }
+
+    .price-card__features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .price-card__features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .price-card__features li:last-child { border-bottom: none; }
+
+    .price-card__features li::before {
+      content: '✓';
+      color: var(--orange);
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .pricing__note {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 32px;
+      line-height: 1.8;
+    }
+
+    /* ── FAQ ──────────────────────────────────── */
+    .faq__list {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq__item {
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      margin-bottom: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .faq__item.open { border-color: var(--orange); }
+
+    .faq__question {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 24px;
+      cursor: pointer;
+      background: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .faq__item.open .faq__question { background: var(--orange-light); }
+
+    .faq__q-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .faq__chevron {
+      margin-left: auto;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+      color: var(--orange);
+    }
+
+    .faq__item.open .faq__chevron { transform: rotate(180deg); }
+
+    .faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      background: #fff;
+    }
+
+    .faq__item.open .faq__answer { max-height: 300px; }
+
+    .faq__answer-inner {
+      display: flex;
+      gap: 16px;
+      padding: 0 24px 20px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .faq__a-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--orange-light);
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 900;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── HAMBURGER ────────────────────────────── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      right: 0;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      z-index: 99;
+      padding: 16px 24px 24px;
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu a {
+      display: block;
+      padding: 14px 0;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .mobile-menu a:last-of-type { border-bottom: none; }
+
+    .mobile-menu .btn--primary {
+      display: flex;
+      margin-top: 16px;
+      justify-content: center;
+      border-bottom: none;
+      padding: 14px 28px;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+
+    /* Tablet */
+    @media (max-width: 1024px) {
+      .services__grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing__grid  { grid-template-columns: repeat(2, 1fr); }
+      .hero__title    { font-size: 44px; }
+    }
+
+    /* Mobile */
+    @media (max-width: 768px) {
+      .section { padding: 64px 20px; }
+
+      /* Header */
+      .header__nav { display: none; }
+      .hamburger   { display: flex; }
+
+      /* Hero */
       .hero__inner {
         grid-template-columns: 1fr;
+        padding: 48px 20px;
         text-align: center;
+        gap: 32px;
+      }
+      .hero__title      { font-size: 36px; }
+      .hero__subtitle   { font-size: 15px; }
+      .hero__features   { justify-content: center; }
+      .hero__photo      { max-width: 100%; }
+      .btn--primary-lg  { font-size: 16px; padding: 15px 32px; }
+
+      /* Problems */
+      .problems__grid {
+        grid-template-columns: 1fr;
+        max-width: 360px;
+        margin: 0 auto 32px;
+      }
+      .problem-card { padding: 28px 20px; }
+      .problem-card__text { font-size: 18px; }
+
+      /* Services */
+      .services__grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
       }
 
-      .hero__title { font-size: 38px; }
-      .hero__features { justify-content: center; }
-      .hero__photo { max-width: 480px; margin: 0 auto; }
-
-      .problems__grid,
-      .services__grid,
+      /* Reasons */
       .reasons__grid {
         grid-template-columns: 1fr;
-        max-width: 480px;
-        margin-left: auto;
-        margin-right: auto;
+        gap: 32px;
+        max-width: 400px;
+        margin: 0 auto;
       }
 
-      .gallery__grid { grid-template-columns: 1fr; }
-
-      .team__inner { flex-direction: column; }
-      .team__photo { max-width: 100%; }
-
-      .footer__inner {
+      /* Pricing */
+      .pricing__grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
+        margin: 0 auto;
       }
+      .price-card--featured { transform: scale(1); }
 
-      .section-title { font-size: 26px; }
-      .cta-banner__title { font-size: 24px; }
+      /* Gallery */
+      .gallery__grid { grid-template-columns: 1fr; }
+      .gallery__item img { height: 220px; }
+
+      /* Team */
+      .team__inner      { flex-direction: column; gap: 32px; }
+      .team__photo      { max-width: 100%; }
+      .team__title      { font-size: 22px; }
+
+      /* FAQ */
+      .faq__question    { font-size: 14px; padding: 16px 18px; }
+      .faq__answer-inner { padding: 0 18px 18px; font-size: 14px; }
+
+      /* CTA */
+      .cta-banner__title { font-size: 22px; }
+      .btn--white        { font-size: 17px; padding: 15px 32px; }
+      .cta-badge         { font-size: 13px; padding: 7px 18px; }
+      .cta-banner__deco  { display: none; }
+
+      /* Footer */
+      .footer { padding: 56px 20px 40px; }
+      .footer__inner { grid-template-columns: 1fr; gap: 36px; }
+      .store__name   { font-size: 24px; }
+
+      /* Form */
+      .form__row    { flex-direction: column; align-items: flex-start; }
+      .form__label  { width: auto; margin-bottom: 4px; }
+      .form__input,
+      .form__select { width: 100%; }
+      .form__select-wrap { width: 100%; }
+
+      /* Section title */
+      .section-title { font-size: 24px; }
+    }
+
+    /* Small mobile */
+    @media (max-width: 400px) {
+      .hero__title    { font-size: 30px; }
+      .hero__feature  { font-size: 12px; padding: 8px 14px; }
+      .section-title  { font-size: 22px; }
     }
   </style>
 </head>
@@ -862,6 +1205,7 @@
       <nav class="header__nav">
         <a href="#services">サービス</a>
         <a href="#reasons">特徴</a>
+        <a href="#pricing">料金</a>
         <a href="#store">店舗情報</a>
         <a href="#faq">よくある質問</a>
         <a href="#contact" class="btn btn--primary">
@@ -874,8 +1218,21 @@
           今すぐ相談を予約する
         </a>
       </nav>
+      <button class="hamburger" id="hamburger" aria-label="メニュー">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </header>
+
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services" onclick="closeMobileMenu()">サービス</a>
+    <a href="#reasons" onclick="closeMobileMenu()">特徴</a>
+    <a href="#pricing" onclick="closeMobileMenu()">料金</a>
+    <a href="#store" onclick="closeMobileMenu()">店舗情報</a>
+    <a href="#faq" onclick="closeMobileMenu()">よくある質問</a>
+    <a href="#contact" class="btn btn--primary" onclick="closeMobileMenu()">今すぐ相談を予約する</a>
+  </div>
 
   <!-- ────── HERO ────── -->
   <section class="hero">
@@ -1039,6 +1396,85 @@
     </div>
   </section>
 
+  <!-- ────── PRICING ────── -->
+  <section class="section section--white" id="pricing">
+    <div class="inner">
+      <div class="section-head">
+        <h2 class="section-title"><span>料金</span>案内</h2>
+        <div class="section-divider">
+          <div class="section-divider__bar"></div>
+          <div class="section-divider__dot"></div>
+          <div class="section-divider__bar"></div>
+        </div>
+      </div>
+
+      <div class="pricing__grid">
+        <div class="price-card fade-in">
+          <div class="price-card__head">
+            <p class="price-card__name">通常相談</p>
+            <div class="price-card__price">
+              <sup>¥</sup>0<span>〜</span>
+            </div>
+            <p class="price-card__note">内容によりお見積もりいたします</p>
+          </div>
+          <div class="price-card__body">
+            <ul class="price-card__features">
+              <li>操作方法・設定のご説明</li>
+              <li>アプリの使い方サポート</li>
+              <li>料金プランのご相談・見直し</li>
+              <li>その他スマホに関するご相談全般</li>
+            </ul>
+            <a href="#contact" class="btn btn--outline" style="width:100%;justify-content:center;">相談を予約する</a>
+          </div>
+        </div>
+
+        <div class="price-card price-card--featured fade-in" style="transition-delay:0.1s">
+          <div class="price-card__head">
+            <span class="price-card__badge">人気No.1</span>
+            <p class="price-card__name">ガラスコーティング</p>
+            <div class="price-card__price">
+              <sup>¥</sup>3,300<span>〜</span>
+            </div>
+            <p class="price-card__note">税込・機種によって異なります</p>
+          </div>
+          <div class="price-card__body">
+            <ul class="price-card__features">
+              <li>液晶画面のキズ・汚れ防止</li>
+              <li>指紋・油分がつきにくくなる</li>
+              <li>指のすべりが格段に向上</li>
+              <li>当日施工・すぐにお渡し</li>
+            </ul>
+            <a href="#contact" class="btn btn--primary" style="width:100%;justify-content:center;">予約する</a>
+          </div>
+        </div>
+
+        <div class="price-card fade-in" style="transition-delay:0.2s">
+          <div class="price-card__head">
+            <p class="price-card__name">定期検診・乗り換えサポート</p>
+            <div class="price-card__price">
+              <sup>¥</sup>0<span>〜</span>
+            </div>
+            <p class="price-card__note">まずはお気軽にご相談ください</p>
+          </div>
+          <div class="price-card__body">
+            <ul class="price-card__features">
+              <li>スマホ動作・容量チェック</li>
+              <li>キャリア乗り換えのご提案</li>
+              <li>月額料金の最適化サポート</li>
+              <li>手続き全般のサポート</li>
+            </ul>
+            <a href="#contact" class="btn btn--outline" style="width:100%;justify-content:center;">相談を予約する</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="pricing__note">
+        ※料金は目安です。詳細はお気軽にお問い合わせください。<br>
+        ※無理な勧誘は一切行っておりません。相談だけのご来店も大歓迎です。
+      </p>
+    </div>
+  </section>
+
   <!-- ────── GALLERY（ガラスコーティング） ────── -->
   <section class="section section--pale">
     <div class="inner">
@@ -1081,6 +1517,104 @@
             地域のみなさまに親しまれるお店として、スタッフ一同が笑顔でお迎えします。初めての方も、ベテランの方も、どうぞお気軽にご来店ください。
           </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ────── FAQ ────── -->
+  <section class="section section--pale" id="faq">
+    <div class="inner">
+      <div class="section-head">
+        <h2 class="section-title">よくある<span>質問</span></h2>
+        <div class="section-divider">
+          <div class="section-divider__bar"></div>
+          <div class="section-divider__dot"></div>
+          <div class="section-divider__bar"></div>
+        </div>
+      </div>
+
+      <div class="faq__list">
+
+        <div class="faq__item fade-in">
+          <div class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__q-icon">Q</div>
+            <span>予約なしでも来店できますか？</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <div class="faq__a-icon">A</div>
+              <p>はい、ご来店は大歓迎です。ただし、混雑時はお待ちいただく場合がありますので、予約いただけるとスムーズにご対応できます。フォームまたはお電話からご予約ください。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item fade-in" style="transition-delay:0.05s">
+          <div class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__q-icon">Q</div>
+            <span>スマホの機種は問いませんか？</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <div class="faq__a-icon">A</div>
+              <p>iPhone・Android問わず、どの機種でも対応しております。ガラスコーティングについては機種によって料金が異なる場合がありますので、お気軽にお問い合わせください。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item fade-in" style="transition-delay:0.1s">
+          <div class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__q-icon">Q</div>
+            <span>相談だけでも大丈夫ですか？</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <div class="faq__a-icon">A</div>
+              <p>もちろんです！「これって聞いていいのかな？」という小さなことでも、どうぞお気軽にご来店ください。無理な勧誘は一切行っておりません。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item fade-in" style="transition-delay:0.15s">
+          <div class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__q-icon">Q</div>
+            <span>ガラスコーティングはどれくらいで完了しますか？</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <div class="faq__a-icon">A</div>
+              <p>施工時間はおよそ15〜30分ほどです。お待ちいただいている間に、スマホの使い方などについてもお気軽にご質問いただけます。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="faq__item fade-in" style="transition-delay:0.2s">
+          <div class="faq__question" onclick="toggleFaq(this)">
+            <div class="faq__q-icon">Q</div>
+            <span>キャリア乗り換えの手続きもお願いできますか？</span>
+            <svg class="faq__chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+          <div class="faq__answer">
+            <div class="faq__answer-inner">
+              <div class="faq__a-icon">A</div>
+              <p>はい、キャリア乗り換えに関する相談・手続きのサポートも承っております。現在のプランの見直しから、乗り換え後の設定まで、面倒な手続きをまとめてサポートいたします。</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -1196,9 +1730,28 @@
           observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
-
+    }, { threshold: 0.1 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    }
+
+    // FAQ accordion
+    function toggleFaq(questionEl) {
+      const item = questionEl.closest('.faq__item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq__item.open').forEach(el => el.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
 
     // Form submit (demo)
     function handleSubmit(e) {
